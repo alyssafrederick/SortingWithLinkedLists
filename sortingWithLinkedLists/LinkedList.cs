@@ -51,12 +51,16 @@ namespace sortingWithLinkedLists
 
         public void Add(T value)
         {
+
+            Size++;
+
             //if head is null, insert and move on
             if (head == null)
             {
                 head = new Node<T>(value);
                 head.nextnode = head;
                 head.lastNode = head;
+                
                 return;
             }
 
@@ -80,7 +84,6 @@ namespace sortingWithLinkedLists
                 temp.nextnode.lastNode = temp;
             }
 
-            Size++;
         }
 
         public void AddAfter(T value, int index)
