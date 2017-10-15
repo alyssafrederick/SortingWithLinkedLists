@@ -18,6 +18,15 @@ namespace sortingWithLinkedLists
                 Node<T> current = head;
                 for (int i = 0; i < index; i++)
                 {
+                    if (current.nextnode == null && index == i)
+                    {
+                        return current.Value;
+                    }
+                    else if (current.nextnode == null)
+                    {
+                        throw new IndexOutOfRangeException("index is out of range");
+                    }
+
                     current = current.nextnode;
                 }
                 return current.Value;
@@ -27,6 +36,15 @@ namespace sortingWithLinkedLists
                 Node<T> current = head;
                 for (int i = 0; i < index; i++)
                 {
+                    if (current.nextnode == null && index == i)
+                    {
+                        current.Value = value;
+                        return;
+                    }
+                    else if (current.nextnode == null)
+                    {
+                        throw new IndexOutOfRangeException("index is out of range");
+                    }
                     current = current.nextnode;
                 }
                 current.Value = value;
@@ -41,26 +59,25 @@ namespace sortingWithLinkedLists
             }
         }
 
-        public Node<T> Last
-        {
-            get
-            {
-                return head.lastNode;
-            }
-        }
+        //public Node<T> Last
+        //{
+        //    get
+        //    {
+        //        return head.lastNode;
+        //    }
+        //}
 
         public void Add(T value)
         {
-
             Size++;
 
             //if head is null, insert and move on
             if (head == null)
             {
                 head = new Node<T>(value);
-                head.nextnode = head;
-                head.lastNode = head;
-                
+                head.nextnode = null;
+                head.lastNode = null;
+
                 return;
             }
 
@@ -70,101 +87,99 @@ namespace sortingWithLinkedLists
                 //make a temp value
                 Node<T> temp = head;
 
-                //you can move back instead of iterating forward
-                //while the nextnode is the head then keep going through the list
-                while (temp.nextnode != head)
+                //going to the end of the list
+                while (temp.nextnode != null)
                 {
                     temp = temp.nextnode;
                 }
 
                 temp.nextnode = new Node<T>(value);
 
-                temp.nextnode.nextnode = head;
-                head.lastNode = temp.nextnode;
+                temp.nextnode.nextnode = null;
                 temp.nextnode.lastNode = temp;
             }
 
         }
 
-        public void AddAfter(T value, int index)
-        {
-            Node<T> temp = head;
-            int count = 0; //should be 0
+        //public void AddAfter(T value, int index)
+        //{
+        //    Node<T> temp = head;
+        //    int count = 0; //should be 0
 
-            //find the index to place the newNode after
-            while (count < index - 1)
-            {
-                temp = temp.nextnode;
-                count++;
-            }
+        //    //find the index to place the newNode after
+        //    while (count < index - 1)
+        //    {
+        //        temp = temp.nextnode;
+        //        count++;
+        //    }
 
-            //just creating a name for the new node
-            Node<T> newNode = new Node<T>(value);
+        //    //just creating a name for the new node
+        //    Node<T> newNode = new Node<T>(value);
 
-            //setting the newNode's nextnode and lastnode
-            newNode.nextnode = temp.nextnode;
-            newNode.lastNode = temp;
+        //    //setting the newNode's nextnode and lastnode
+        //    newNode.nextnode = temp.nextnode;
+        //    newNode.lastNode = temp;
 
-            //connecting the newNode's nextnode and lastnode to the newNode
-            temp.nextnode.lastNode = newNode;
-            temp.nextnode = newNode;
+        //    //connecting the newNode's nextnode and lastnode to the newNode
+        //    temp.nextnode.lastNode = newNode;
+        //    temp.nextnode = newNode;
 
-            Size++;
-        }
+        //    Size++;
+        //}
 
-        public void AddBefore(T value, int index)
-        {
-            Node<T> temp = head;
-            int count = 0; //should be 0
+        //public void AddBefore(T value, int index)
+        //{
+        //    Node<T> temp = head;
+        //    int count = 0; //should be 0
 
-            //find the index to place the newNode after
-            while (count < index - 1)
-            {
-                temp = temp.nextnode;
-                count++;
-            }
+        //    //find the index to place the newNode after
+        //    while (count < index - 1)
+        //    {
+        //        temp = temp.nextnode;
+        //        count++;
+        //    }
 
-            //just creating a name for the new node
-            Node<T> newNode = new Node<T>(value);
+        //    //just creating a name for the new node
+        //    Node<T> newNode = new Node<T>(value);
 
-            //setting the newNode's nextnode and lastnode 
-            newNode.nextnode = temp;
-            newNode.lastNode = temp.lastNode;
+        //    //setting the newNode's nextnode and lastnode 
+        //    newNode.nextnode = temp;
+        //    newNode.lastNode = temp.lastNode;
 
-            //connecting the newNode's nextnode and lastnode to the newNode
-            temp.lastNode.nextnode = newNode;
-            temp.lastNode = newNode;
+        //    //connecting the newNode's nextnode and lastnode to the newNode
+        //    temp.lastNode.nextnode = newNode;
+        //    temp.lastNode = newNode;
 
-            Size++;
-        }
+        //    Size++;
+        //}
 
-        public void AddToStart(T value)
-        {
-            if (head == null)
-            {
-                Add(value);
-            }
+        //public void AddToStart(T value)
+        //{
+        //    if (head == null)
+        //    {
+        //        Add(value);
+        //    }
 
-            else
-            {
-                //just creating a name for the new node
-                Node<T> newNode = new Node<T>(value);
+        //    else
+        //    {
+        //        //just creating a name for the new node
+        //        Node<T> newNode = new Node<T>(value);
 
-                //setting the newNode's nextnode and lastnode 
-                newNode.nextnode = head;
-                newNode.lastNode = head.lastNode;
+        //        //setting the newNode's nextnode and lastnode 
+        //        newNode.nextnode = head;
+        //        newNode.lastNode = head.lastNode;
 
-                //connecting the newNode's nextnode and lastnode to the newNode
-                head.lastNode.nextnode = newNode;
-                head.lastNode = newNode;
+        //        //connecting the newNode's nextnode and lastnode to the newNode
+        //        head.lastNode.nextnode = newNode;
+        //        head.lastNode = newNode;
 
-                //changing the head to the newNode
-                head = newNode;
-            }
+        //        //changing the head to the newNode
+        //        head = newNode;
+        //    }
 
 
-            Size++;
-        }
+        //    Size++;
+        //}
 
         public bool Find(int value)
         {

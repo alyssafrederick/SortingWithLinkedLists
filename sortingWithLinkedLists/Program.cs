@@ -11,11 +11,6 @@ namespace sortingWithLinkedLists
         static void Main(string[] args)
         {
             LinkedList<int> numlist = new LinkedList<int>();
-            //numlist.Add(6);
-            //numlist.Add(2);
-            //numlist.Add(7);
-            //numlist.Add(3);
-            //numlist.Add(5);
 
             Random rnd = new Random();
             for (int i = 0; i < 10; i++)
@@ -28,18 +23,15 @@ namespace sortingWithLinkedLists
                 Console.WriteLine("{0}", numlist[j]);
             }
 
-            // 6, 2, 7, 3, 5
-            // 2, 3, 5, 6, 7
-
 
             ////////////////////////////////////bubble sort////////////////////
-            //bool switched;
+            bool switched;
 
             //do
             //{
             //    switched = false;
 
-            //    for (int i = 0; i < numlist.Size; i++)
+            //    for (int i = 0; i < numlist.Size - 1; i++)
             //    {
 
             //        if (numlist[i] > numlist[i + 1])
@@ -56,9 +48,9 @@ namespace sortingWithLinkedLists
 
             //Console.Write("\n \n");
 
-            //for (int j = 0; j < numlist.Size; j++)
+            //for (int k = 0; k < numlist.Size; k++)
             //{
-            //    Console.WriteLine("{0}", numlist[j]);
+            //    Console.WriteLine("{0}", numlist[k]);
             //}
 
 
