@@ -181,6 +181,75 @@ namespace sortingWithLinkedLists
         //    Size++;
         //}
 
+        public void AddToStart(T value)
+        {
+            if (head == null)
+            {
+                Add(value);
+            }
+
+            else
+            {
+                //just creating a name for the new node
+                Node<T> newNode = new Node<T>(value);
+
+                //setting the newNode's nextnode and lastnode 
+                newNode.nextnode = head;
+                newNode.lastNode = head.lastNode;
+
+                //connecting the newNode's nextnode and lastnode to the newNode
+                head.lastNode.nextnode = newNode;
+                head.lastNode = newNode;
+
+                //changing the head to the newNode
+                head = newNode;
+            }
+
+
+            Size++;
+        }
+
+        public void Delete(T value)
+        {
+            Node<T> temp = head;
+
+            //if the head is the only one in the list
+            if (head.lastNode == head && head.nextnode == head && head.Value.CompareTo(value) == 0)
+            {
+                head = null;
+                return;
+            }
+
+            //after loop we are either at the head of the list or we found the value to remove
+            while (temp.nextnode != head && temp.Value.CompareTo(value) != 0)
+            {
+                temp = temp.nextnode;
+            }
+
+            //if the nextNode is head set the second to last nodes lastNode to null
+            if (temp.nextnode == head)
+            {
+                temp.lastNode.nextnode = null;
+            }
+
+            //if we found the value then
+            if (temp.Value.CompareTo(value) == 0)
+            {
+                temp.nextnode.lastNode = temp.lastNode;
+                temp.lastNode.nextnode = temp.nextnode;
+
+                //if the node is the head
+                if (temp == head)
+                {
+                    temp.nextnode.lastNode = head.lastNode;
+                    head = temp.nextnode;
+                }
+            }
+
+            Size--;
+        }
+
+
         public bool Find(int value)
         {
             Node<T> temp = head;

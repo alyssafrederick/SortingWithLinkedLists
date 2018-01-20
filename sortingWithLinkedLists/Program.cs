@@ -31,9 +31,8 @@ namespace sortingWithLinkedLists
             //sortthis.BubbleSort(numlist);
             //sortthis.SelectionSort(numlist);
             //sortthis.InsertionSort(numlist);
-
-            sortthis.MergeSort(numlist);
-
+            //sortthis.MergeSort(numlist);
+            sortthis.QuickSort(numlist);
 
             Console.ReadKey();
         }
