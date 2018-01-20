@@ -96,24 +96,25 @@ namespace sortingWithLinkedLists
 
         public void mergesort(LinkedList<T> tosort, int start, int end)
         {
-            if (start <= end)
+            if (start < end)
             {
                 int middle = (start + end) / 2;
                 mergesort(tosort, start, middle);
                 mergesort(tosort, middle + 1, end);
-                merge(tosort, start, middle, end);
+
+                merge(tosort, start, end);
             }
         }
 
-        public void merge(LinkedList<T> tosort, int start, int middle, int end)
-        {
-            LinkedList<T> leftlist = new LinkedList<T>();
-            LinkedList<T> rightlist = new LinkedList<T>();
-
-            if (leftlist.First.Value.CompareTo(leftlist.) > 0)
+        public void merge(LinkedList<T> tosort, int start, int end)
+        {           
+            if (tosort[start].CompareTo(tosort[end]) > 0)
             {
-
+                T temp = tosort[start];
+                tosort[start] = tosort[end];
+                tosort[end] = temp;
             }
+
         }
 
         public void MergeSort(LinkedList<T> tosort)
