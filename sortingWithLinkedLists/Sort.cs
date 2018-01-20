@@ -107,14 +107,19 @@ namespace sortingWithLinkedLists
         }
 
         public void merge(LinkedList<T> tosort, int start, int end)
-        {           
-            if (tosort[start].CompareTo(tosort[end]) > 0)
+        {
+            for (int i = start; i < end; i++)
             {
-                T temp = tosort[start];
-                tosort[start] = tosort[end];
-                tosort[end] = temp;
+                for (int u = i - 1; u < end; u++)
+                {
+                    if (tosort[u].CompareTo(tosort[u + 1]) > 0)
+                    {
+                        T temp = tosort[u];
+                        tosort[u] = tosort[u + 1];
+                        tosort[u + 1] = temp;
+                    }
+                }
             }
-
         }
 
         public void MergeSort(LinkedList<T> tosort)
