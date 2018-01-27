@@ -134,12 +134,17 @@ namespace sortingWithLinkedLists
             }
         }
 
-        public void quicksort(LinkedList<T> tosort, int end)
+        public void quicksort(LinkedList<T> tosort, int start, int end)
         {
-            quick(tosort, end);
+            if (start == end)
+            {
+                return;
+            }
+
+            quick(tosort, start, end);
         }
 
-        public void quick(LinkedList<T> tosort, int end)
+        public void quick(LinkedList<T> tosort, int start, int end)
         {
             T wall = tosort[end];
             int numberOnLeft = 0;
@@ -151,16 +156,20 @@ namespace sortingWithLinkedLists
                     numberOnLeft++;
 
                     T temp = tosort[u];
-                    //delete where old node was.. delete is for circulary linked list
-                    tosort.Delete(tosort[u]);
+                    //delete where old node was
+                    tosort.DeleteAtIndex(u+1);
                     //add the node you just deleted to the start bc it's less than than the wall's value
                     tosort.AddToStart(temp);
                 }
             }
+
+            quicksort(tosort, start, numberOnLeft);
+            quicksort(tosort, numberOnLeft, end);
         }
+
         public void QuickSort(LinkedList<T> tosort)
         {
-            quicksort(tosort, tosort.Size - 1);
+            quicksort(tosort, 0, tosort.Size - 1);
 
             Console.Write("\n \n");
 

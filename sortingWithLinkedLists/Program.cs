@@ -12,7 +12,7 @@ namespace sortingWithLinkedLists
         {
             LinkedList<int> numlist = new LinkedList<int>();
 
-            Random rnd = new Random();
+            Random rnd = new Random(1);
             for (int i = 0; i < 10; i++)
             {
                 numlist.Add(rnd.Next(1, 11));

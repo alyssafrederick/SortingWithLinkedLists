@@ -195,10 +195,9 @@ namespace sortingWithLinkedLists
 
                 //setting the newNode's nextnode and lastnode 
                 newNode.nextnode = head;
-                newNode.lastNode = head.lastNode;
+                newNode.lastNode = null;
 
                 //connecting the newNode's nextnode and lastnode to the newNode
-                head.lastNode.nextnode = newNode;
                 head.lastNode = newNode;
 
                 //changing the head to the newNode
@@ -249,6 +248,54 @@ namespace sortingWithLinkedLists
             Size--;
         }
 
+
+        public void DeleteAtIndex(int index)
+        {
+            Node<T> temp = head;
+            int count = 0;
+
+            //if the head is the only one in the list
+            if (head.nextnode == null && head.lastNode == null)
+            {
+                head = null;
+                Size--;
+                return;
+            }
+
+
+            //find the index to delete 
+            while (count < index - 1)
+            {
+                temp = temp.nextnode;
+                count++;
+            }
+
+            //if we are deleting the head
+            if (index == 1)
+            {
+                head.nextnode.lastNode = null;
+                head = temp.nextnode;
+
+                temp.nextnode = head;
+            }
+
+            //if we found the index then
+            else if (count == index - 1)
+            {
+                if (temp.nextnode == null)
+                {
+                    temp.lastNode.nextnode = null;
+                }
+
+                else
+                {
+                    temp.nextnode.lastNode = temp.lastNode;
+                    temp.lastNode.nextnode = temp.nextnode;
+                }
+            }
+
+            Size--;
+        }
 
         public bool Find(int value)
         {
