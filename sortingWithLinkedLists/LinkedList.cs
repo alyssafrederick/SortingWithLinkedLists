@@ -231,6 +231,51 @@ namespace sortingWithLinkedLists
             Size++;
         }
 
+        public void AddAtIndex(T value, int index)
+        {
+            Node<T> temp = head;
+            int count = 0;
+
+            //if the head is the only one in the list
+            if (head.nextnode == null && head.lastNode == null)
+            {
+                Add(value);
+                return;
+            }
+
+
+            //find the index to add
+            while (count < index)
+            {
+                temp = temp.nextnode;
+                count++;
+            }
+
+            //if we are adding the head
+            if (index == 0)
+            {
+                AddToStart(value);
+                return;
+            }
+
+            //if we found the index then
+            else if (count == index)
+            {
+                //just creating a name for the new node
+                Node<T> newNode = new Node<T>(value);
+
+                //setting the newNode's nextnode and lastnode 
+                newNode.nextnode = temp;
+                newNode.lastNode = temp.lastNode;
+
+                //connecting the newNode's nextnode and lastnode to the newNode
+                temp.lastNode.nextnode = newNode;
+                temp.lastNode = newNode;
+            }
+
+            Size++;
+        }
+
         public void Delete(T value)
         {
             Node<T> temp = head;
@@ -271,7 +316,6 @@ namespace sortingWithLinkedLists
             Size--;
         }
 
-
         public void DeleteAtIndex(int index)
         {
             Node<T> temp = head;
@@ -287,14 +331,14 @@ namespace sortingWithLinkedLists
 
 
             //find the index to delete 
-            while (count < index - 1)
+            while (count < index)
             {
                 temp = temp.nextnode;
                 count++;
             }
 
             //if we are deleting the head
-            if (index == 1)
+            if (index == 0)
             {
                 head.nextnode.lastNode = null;
                 head = temp.nextnode;
@@ -303,7 +347,7 @@ namespace sortingWithLinkedLists
             }
 
             //if we found the index then
-            else if (count == index - 1)
+            else if (count == index)
             {
                 if (temp.nextnode == null)
                 {

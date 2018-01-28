@@ -136,20 +136,20 @@ namespace sortingWithLinkedLists
 
         public void quicksort(LinkedList<T> tosort, int start, int end)
         {
-            if (start == end - 1)
+            if (start >= end)
             {
                 return;
             }
             else
             {
-                quick(tosort, start, end);
+                quick(tosort, start, end - 1);
             }
         }
 
         public void quick(LinkedList<T> tosort, int start, int end)
         {
             T pivot = tosort[end];
-            int numberOnLeft = 0;
+            int numberOnLeft = 0;            
 
             for (int u = 0; u < end; u++)
             {                
@@ -159,19 +159,23 @@ namespace sortingWithLinkedLists
 
                     T temp = tosort[u];
                     //delete where old node was
-                    tosort.DeleteAtIndex(u + 1);
+                    tosort.DeleteAtIndex(u);
                     //add the node you just deleted to the start bc it's less than than the pivot value
                     tosort.AddToStart(temp);
                 }
             }
 
-            quicksort(tosort, start, numberOnLeft - 1);
+            //TODO: Fix putting pivot at wall pos
+            tosort.DeleteAtIndex(end);
+            tosort.AddAtIndex(pivot, numberOnLeft);
+
+            quicksort(tosort, start, numberOnLeft);
             quicksort(tosort, numberOnLeft, end);
         }
 
         public void QuickSort(LinkedList<T> tosort)
         {
-            quicksort(tosort, 0, tosort.Size - 1);
+            quicksort(tosort, 0, tosort.Size);
 
             Console.Write("\n \n");
 
