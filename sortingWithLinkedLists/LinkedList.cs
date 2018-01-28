@@ -15,10 +15,21 @@ namespace sortingWithLinkedLists
         {
             get
             {
-                Node<T> current = head;
+                int count = 0;
+                for (Node<T> temp = head; temp != null; temp = temp.nextnode, count++)
+                {
+                    if (count == index)
+                    {
+                        return temp.Value;
+                    }
+                }
+
+                throw new IndexOutOfRangeException("index is out of range");
+
+                /*Node<T> current = head;
                 for (int i = 0; i < index; i++)
                 {
-                    if (current.nextnode == null && index == i)
+                    if (index == i)
                     {
                         return current.Value;
                     }
@@ -29,14 +40,26 @@ namespace sortingWithLinkedLists
 
                     current = current.nextnode;
                 }
-                return current.Value;
+                return current.Value;*/
             }
             set
             {
-                Node<T> current = head;
+                int count = 0;
+                for (Node<T> temp = head; temp != null; temp = temp.nextnode, count++)
+                {
+                    if (count == index)
+                    {
+                        temp.Value = value;
+                        return;
+                    }
+                }
+
+                throw new IndexOutOfRangeException("index is out of range");
+
+                /*Node<T> current = head;
                 for (int i = 0; i < index; i++)
                 {
-                    if (current.nextnode == null && index == i)
+                    if (index == i)
                     {
                         current.Value = value;
                         return;
@@ -47,7 +70,7 @@ namespace sortingWithLinkedLists
                     }
                     current = current.nextnode;
                 }
-                current.Value = value;
+                current.Value = value;*/
             }
         }
 
