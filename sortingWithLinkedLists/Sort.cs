@@ -110,7 +110,7 @@ namespace sortingWithLinkedLists
         {
             for (int i = start; i < end; i++)
             {
-                for (int u = i - 1; u < end; u++)
+                for (int u = i; u < end - 1; u++)
                 {
                     if (tosort[u].CompareTo(tosort[u + 1]) > 0)
                     {
@@ -124,7 +124,7 @@ namespace sortingWithLinkedLists
 
         public void MergeSort(LinkedList<T> tosort)
         {
-            mergesort(tosort, 0, tosort.Size - 1);
+            mergesort(tosort, 0, tosort.Size);
 
             Console.Write("\n \n");
 
@@ -133,6 +133,12 @@ namespace sortingWithLinkedLists
                 Console.WriteLine("{0}", tosort[j]);
             }
         }
+
+        //public void SwagSort(LinkedList<T> tosort)
+        //{
+
+
+        //}
 
         public void quicksort(LinkedList<T> tosort, int start, int end)
         {
@@ -149,8 +155,13 @@ namespace sortingWithLinkedLists
         public void quick(LinkedList<T> tosort, int start, int end)
         {
             T pivot = tosort[end];
-            int numberOnLeft = 0;            
+            int numberOnLeft = 0;
+            Console.Write("\n \n");
 
+            for (int j = 0; j < tosort.Size; j++)
+            {
+                Console.Write("{0}, ", tosort[j]);
+            }
             for (int u = 0; u < end; u++)
             {                
                 if (tosort[u].CompareTo(pivot) < 0)
@@ -160,8 +171,8 @@ namespace sortingWithLinkedLists
                     T temp = tosort[u];
                     //delete where old node was
                     tosort.DeleteAtIndex(u);
-                    //add the node you just deleted to the start bc it's less than than the pivot value
-                    tosort.AddToStart(temp);
+                    //add the node you just deleted to the end of the left list bc it's less than than the pivot value
+                    tosort.AddAtIndex(temp, numberOnLeft - 1);
                 }
             }
 
@@ -176,12 +187,14 @@ namespace sortingWithLinkedLists
         public void QuickSort(LinkedList<T> tosort)
         {
             quicksort(tosort, 0, tosort.Size);
+            quicksort(tosort, 0, tosort.Size);
 
             Console.Write("\n \n");
+            Console.WriteLine("-------------------------------------");
 
             for (int j = 0; j < tosort.Size; j++)
             {
-                Console.WriteLine("{0}", tosort[j]);
+                Console.Write("{0}, ", tosort[j]);
             }
         }
 

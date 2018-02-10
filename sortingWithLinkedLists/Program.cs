@@ -20,7 +20,7 @@ namespace sortingWithLinkedLists
 
             for (int j = 0; j < numlist.Size; j++)
             {
-                Console.WriteLine("{0}", numlist[j]);
+                Console.Write("{0}, ", numlist[j]);
             }
 
 
